@@ -6,7 +6,7 @@ public class TestDIYarrayList {
 
     public static void main(String... args) {
 
-        DIYarrayList<String> diYarrayList = new DIYarrayList<>();
+        List<String> diYarrayList = new DIYarrayList<>();
 
         //Collections.addAll(Collection<? super T> c, T... elements);
         Collections.addAll(diYarrayList, "diy first string", "diy second string", "diy third string", "diy fourth string");
@@ -17,10 +17,15 @@ public class TestDIYarrayList {
         }
         System.out.println("with random: " + Arrays.toString(diYarrayList.toArray()));
 
-        //Collections.static <T> void copy(List<? super T> dest, List<? extends T> src);
         List<String> arrayList = new ArrayList();
         arrayList.add("first string");
         arrayList.add("second string");
+        for (String entry: generateRandomWords(20)) {
+            arrayList.add(entry.toUpperCase());
+        }
+
+
+        //Collections.static <T> void copy(List<? super T> dest, List<? extends T> src);
         Collections.copy(diYarrayList, arrayList);
         System.out.println("after copy: " + Arrays.toString(diYarrayList.toArray()));
 

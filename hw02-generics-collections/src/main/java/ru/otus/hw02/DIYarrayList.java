@@ -4,6 +4,7 @@ import java.util.*;
 
 class DIYarrayList<T> implements List<T> {
     private Object[] elements;
+    private int size;
 
     public DIYarrayList() {
         elements = new Object[0];
@@ -11,7 +12,7 @@ class DIYarrayList<T> implements List<T> {
 
     @Override
     public int size() {
-        return elements.length;
+        return this.size;
     }
 
     @Override
@@ -37,8 +38,10 @@ class DIYarrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        this.elements = Arrays.copyOf(this.elements, this.size()+1);
-        this.elements[this.size()-1] = t;
+        if (this.size+1 > this.elements.length) {
+            this.grow();
+        }
+        this.elements[this.size++] = t;
         return true;
     }
 
@@ -69,14 +72,13 @@ class DIYarrayList<T> implements List<T> {
 
     @Override
     public T get(int i) {
-        if (i > this.size()-1 || i < 0) {
-            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + this.size());
-        }
+        this.checkIndex(i);
         return (T) this.elements[i];
     }
 
     @Override
     public T set(int i, T t) {
+        this.checkIndex(i);
         this.elements[i] = t;
         return (T) this.elements[i];
     }
@@ -145,5 +147,22 @@ class DIYarrayList<T> implements List<T> {
 
         @Override
         public void add(T t) { throw new UnsupportedOperationException(); }
+    }
+
+    private void grow() {
+        int newCapacity;
+        if (this.elements.length == 0) {
+            newCapacity = 10;
+        } else {
+            newCapacity = this.elements.length + (this.elements.length >> 1);
+        }
+
+        this.elements = Arrays.copyOf(this.elements, newCapacity);
+    }
+
+    private void checkIndex(int i) {
+        if (i > this.size()-1 || i < 0) {
+            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + this.size());
+        }
     }
 }
