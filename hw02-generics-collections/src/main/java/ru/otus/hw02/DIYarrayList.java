@@ -3,6 +3,8 @@ package ru.otus.hw02;
 import java.util.*;
 
 class DIYarrayList<T> implements List<T> {
+    private static final int DEFAULT_CAPACITY = 10;
+
     private Object[] elements;
     private int size;
 
@@ -38,7 +40,7 @@ class DIYarrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        if (this.size+1 > this.elements.length) {
+        if (this.size == this.elements.length) {
             this.grow();
         }
         this.elements[this.size++] = t;
@@ -152,7 +154,7 @@ class DIYarrayList<T> implements List<T> {
     private void grow() {
         int newCapacity;
         if (this.elements.length == 0) {
-            newCapacity = 10;
+            newCapacity = DEFAULT_CAPACITY;
         } else {
             newCapacity = this.elements.length + (this.elements.length >> 1);
         }
