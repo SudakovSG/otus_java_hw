@@ -23,6 +23,7 @@
     <modules>
         <module>hw01-maven</module>
         <module>hw02-generics-collections</module>
+        <module>hw03-annotations-reflection</module>
     </modules>
 
     <properties>
