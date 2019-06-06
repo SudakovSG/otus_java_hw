@@ -6,6 +6,8 @@ import ru.otus.hw03.annotations.Test;
 
 class AnnotationsTest {
 
+    public static void main(String[] args) { TestRunner.run(AnnotationsTest.class); }
+
     AnnotationsTest() {
         System.out.println("Call of the constructor");
     }
