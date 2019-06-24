@@ -3,6 +3,7 @@ package ru.otus.hw03;
 import ru.otus.hw03.annotations.AfterEach;
 import ru.otus.hw03.annotations.BeforeEach;
 import ru.otus.hw03.annotations.Test;
+import ru.otus.hw03.testing.TestRunner;
 
 class AnnotationsTest {
 
